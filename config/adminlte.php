@@ -102,7 +102,7 @@ return [
         
         [
             'text'        => 'HOME',
-            'url'         => 'admin/pages',
+            'url'         => '/',
             'icon'        => 'home',
             'label_color' => 'success',
         ],
@@ -110,10 +110,41 @@ return [
             'text' => 'Clientes',
             'url' => '#',
             'icon'=> 'user',
+            'submenu' => [
+                [
+                    'text' => 'Cadastrar',
+                    'url'  => 'novocliente',
+                ],
+                [
+                    'text'    => 'Lista de Clientes',
+                    'url'     => 'listaclientes',
+                ],
             
+            ],
+            
+        ],
+        [
+            'text' => 'Equipamentos',
+            'url' => 'equipamentos',
+            'icon'=> 'user',
+            'submenu' => [
+                [
+                    'text' => 'Novo',
+                    'url'  => 'novoequip',
+                ],
+                [
+                    'text'    => 'Consulta',
+                    'url'     => 'equipamentos',
+                ],
+            
+            ],
         ],
         
         'CHAMADOS',
+        [
+            'text' => 'Novo',
+            'url'  => 'novoservico',
+        ],
         [
             'text'       => 'Abertos',
             'icon_color' => 'red',
