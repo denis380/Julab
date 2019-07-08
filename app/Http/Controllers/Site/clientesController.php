@@ -23,7 +23,7 @@ class clientesController extends Controller
         $validacao = $request->validate([
             'nome'      => 'required',
             'email'     => 'required|email',
-            'telefone'  => 'required|phone',
+            'telefone'  => 'required',
             'documento' => 'required',
             'estado'    => 'required',
             'cidade'    => 'required',
@@ -63,7 +63,7 @@ class clientesController extends Controller
         $validacao = $request->validate([
             'nome'      => 'required',
             'email'     => 'required|email',
-            'telefone'  => 'required|phone',
+            'telefone'  => 'required',
             'documento' => 'required',
             'estado'    => 'required',
             'cidade'    => 'required',

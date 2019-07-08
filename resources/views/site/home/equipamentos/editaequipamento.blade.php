@@ -1,5 +1,13 @@
 @extends('adminlte::page')
 
+@section('css')
+<style>
+    .container{
+        width: 100%;
+    }
+</style>
+@endsection
+
 @section('content')
   @if ($errors->any())
     <div class="alert alert-danger">

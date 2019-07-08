@@ -24,7 +24,7 @@ class ServicosController extends Controller
         $validacao = $request->validate([
             'c_equipamento'     => 'required',
             'id_cliente'        => 'required',
-            'descricao'         => 'required|phone',
+            'descricao'         => 'required',
             'data_atendimento'  => 'required',
             'data_previsao'     => 'required',
             'estado'            => 'required',
@@ -38,16 +38,12 @@ class ServicosController extends Controller
         $servicos->data_atendimento = $request->data_atendimento;
         $servicos->data_previsao = $request->data_previsao;
         $servicos->estado = $request->estado;
-        $servicos->nota = '';
         $servicos->data_abertura = date('Y/m/d');
         $servicos->data_entrega = date('Y/m/d');
 
         $servicos->save();
         
 
-        echo "Criou";
-        //$servicos->create($request->all());
-
-        
+        return redirect ('/'); 
     }
 }

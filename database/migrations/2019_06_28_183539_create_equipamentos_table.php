@@ -14,7 +14,7 @@ class CreateEquipamentosTable extends Migration
     public function up()
     {
         Schema::create('equipamentos', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('id')->unsigned();
             $table->string('tipo');
             $table->string('fabricante');
             $table->string('modelo')->nullable();
