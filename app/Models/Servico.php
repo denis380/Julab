@@ -21,11 +21,11 @@ class Servico extends Model
 
     public function clientes()
     {
-        return $this->hasMany(Clientes::class);
+        return $this->belongsToMany(Clientes::class);
     }
 
     public function equipamentos()
     {
-        return $this->hasMany(Equipamentos::class);
+        return $this->hasOne(Equipamentos::class);
     }
 }

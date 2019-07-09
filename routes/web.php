@@ -24,6 +24,9 @@ Route::group(['middleware' => 'auth'], function(){
     // =-=-=-=-=-=-=-=-=-=-=-=-=-=-= Rotas de Serviços =-=-=-=-=-=-=-=-=-=-=-=-=-//
     Route::get('/novoservico', 'Site\ServicosController@novoServico');
     Route::post('/validaservico', 'Site\ServicosController@validaServico');
+    Route::get('/abertos', 'Site\ServicosController@abertos');
+    Route::get('/ematendimento', 'Site\ServicosController@ematendimento');
+    Route::get('/fechados', 'Site\ServicosController@fechados');
     // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-//
 });
 

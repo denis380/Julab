@@ -148,14 +148,17 @@ return [
         [
             'text'       => 'Abertos',
             'icon_color' => 'red',
+            'url'        => 'abertos',
         ],
         [
             'text'       => 'Em atendimento',
             'icon_color' => 'yellow',
+            'url'        => 'ematendimento',
         ],
         [
             'text'       => 'Fechados',
             'icon_color' => 'aqua',
+            'url'        => 'fechados',
         ],
 
 

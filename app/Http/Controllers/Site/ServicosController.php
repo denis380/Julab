@@ -8,6 +8,7 @@ use App\Models\Servico;
 use App\Models\Clientes;
 use App\Models\Equipamentos;
 use App\User;
+use Illuminate\Support\Facades\DB;
 
 class ServicosController extends Controller
 {
@@ -15,7 +16,7 @@ class ServicosController extends Controller
     {
         $clientes = Clientes::orderBy('nome')->paginate(10);
         $equipamentos = Equipamentos::orderBy('tipo')->paginate(10);
-        return view('site.home.novochamado', ['equipamentos' => $equipamentos, 'clientes' => $clientes]);
+        return view('site.home.servicos.novochamado', ['equipamentos' => $equipamentos, 'clientes' => $clientes]);
     }
 
     public function validaServico(Request $request)
@@ -45,5 +46,24 @@ class ServicosController extends Controller
         
 
         return redirect ('/'); 
+    }
+
+    public function abertos()
+    {
+        // Busca os chamados cujo o estado é aberto no DB.
+        $servicos = Servico::where('estado', 'aberto')->get();
+        return view('site.home.servicos.listachamados', ['servicos' => $servicos]);
+    }
+
+    public function ematendimento()
+    {
+        $servicos = Servico::where('estado', 'atendimento')->get();
+        return view('site.home.servicos.listachamados', ['servicos' => $servicos]);
+    }
+
+    public function fechados()
+    {
+        $servicos = Servico::where('estado', 'fechado')->get();
+        return view('site.home.servicos.listachamados', ['servicos' => $servicos]);
     }
 }
