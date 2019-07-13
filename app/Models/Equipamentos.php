@@ -10,6 +10,12 @@ class Equipamentos extends Model
     protected $table = 'equipamentos';
     protected $fillable = ['tipo', 'fabricante', 'modelo', 'obs'];
     protected $guarded = ['id', 'created_at', 'update_at'];
+
+
+    public function servicos()
+    {
+        return $this->belongsTo(Servico::class, 'c_equipamento');
+    }
 }
 
     

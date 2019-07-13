@@ -14,13 +14,12 @@ class CreateServicosTable extends Migration
     public function up()
     {
         Schema::create('servicos', function (Blueprint $table) {
-            $table->bigIncrements('numero')->unsigned();
+            $table->bigIncrements('id')->unsigned();
             $table->string('descricao');
             $table->bigInteger('id_cliente')->unsigned();
             $table->foreign('id_cliente')->references('id')->on('clientes')->onDelete('cascade');
             $table->bigInteger('c_equipamento')->unsigned(); 
             $table->foreign('c_equipamento')->references('id')->on('equipamentos')->onDelete('cascade');
-            $table->dateTime('data_abertura');
             $table->dateTime('data_previsao')->nullable();
             $table->dateTime('data_atendimento')->nullable();
             $table->dateTime('data_entrega');

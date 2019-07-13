@@ -30,23 +30,22 @@
                 <th scope="col">Estado</th>
                 <th scope="col">Equipamento</th>
                 <th scope="col">Cliente</th>
+                <th scope="col">Data Abertura</th>
                 <th scope="col">Data Atendimento</th>
                 <th scope="col">Data Entrega</th>
               </tr>
             </thead>
             <tbody>
                 @foreach ($servicos as $servico)
-                
-                    
-                
             <tr>
-                <td>{{ $servico->numero }}</td>
+                <td><a href="/editaservico/{{ $servico->id }}">{{ $servico->id }}</a></td>
                 <td>{{ $servico->descricao }}</td>
                 <td>{{ $servico->estado }}</td>
-                <td>{{ $servico->c_equipamento }}</td>
-                <td>{{ $servico->id_cliente }}</td>
-                <td>{{ $servico->data_atendimento }}</td>
-                <td>{{ $servico->data_entrega }}</td>
+                <td>{{ $servico->equipamentos->tipo }} &nbsp {{ $servico->equipamentos->fabricante }} &nbsp ({{ $servico->equipamentos->modelo }})</td> 
+                <td>{{ $servico->cliente->nome }}</td>
+                <td>{{ $servico->created_at->format('d-m-Y') }}</td>
+                <td>{{ $servico->data_atendimento->format('d-m-Y') }}</td>
+                <td>{{ $servico->data_previsao->format('d-m-Y') }}</td>
                 <!--<td><a href="/editaequip/" class="btn btn-success">Editar</a><a href="/excluiequipamento/
                 " class="btn btn-danger" onclick="return confirm('Tem certeza que deseja excluir esse equipamento?')">Excluir</a></td>
                 -->

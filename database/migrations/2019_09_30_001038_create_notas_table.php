@@ -17,7 +17,7 @@ class CreateNotasTable extends Migration
             $table->bigIncrements('id');
             $table->string('nota');
             $table->bigInteger('id_servico')->unsigned();
-            $table->foreign('id_servico')->references('numero')->on('servicos')->onDelete('cascade');
+            $table->foreign('id_servico')->references('id')->on('servicos')->onDelete('cascade');
             $table->timestamps();
         });
     }

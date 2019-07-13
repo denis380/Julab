@@ -15,7 +15,7 @@ class UserTableSeeder extends Seeder
         User::create([
             'name'       => 'Denis dos Reis Santos',
             'email'      => 'denis380@gmail.com',
-            'password'   => bcrypt(''),
+            'password'   => bcrypt('Fiesta@02'),
             'telefone'   => '31 973037490',
             'estado'     => 'MG',
             'cidade'     => 'Contagem',

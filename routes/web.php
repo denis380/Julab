@@ -1,7 +1,9 @@
 <?php
 
+Auth::routes();
+
 Route::group(['middleware' => 'auth'], function(){
-    Route::get('/', 'Site\SiteController@index');
+    Route::get('/admin', 'Site\SiteController@admin')->name('admin');
 
     // =-=-=-=-=-=-=-=-=-=-=-=-= Rotas de Equipamentos =-=-=-=-=-=-=-=-=-=-=-=-=-//
     Route::get('/equipamentos', 'site\EquipamentosController@exibeEquipamentos');
@@ -27,9 +29,28 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/abertos', 'Site\ServicosController@abertos');
     Route::get('/ematendimento', 'Site\ServicosController@ematendimento');
     Route::get('/fechados', 'Site\ServicosController@fechados');
+    Route::get('/editaservico/{id}', 'Site\ServicosController@editaServico');
     // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-//
+
+    // =-=-=-=-=-=-=--=-=-=-=-=-=-= Perfil Usuario =-=-=-=-=-=-==-=-=-=-=-=-=-=-=//
+    Route::get('/mudasenha', 'Prestador\PrestadorController@mudaSenha');
+    Route::post('/storesenha', 'Prestador\PrestadorController@storeSenha');
+    Route::get('/meuperfil', 'Prestador\PrestadorController@meuPerfil');
+    Route::post('/storeperfil', 'Prestador\PrestadorController@storePerfil');
+    // =-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=//
+
+
+    Route::get('/teste', function(){
+        $o = '123456789abcdefghijklmnopqrstuvxz';
+        $a = substr($o, 0, 9);
+        echo $a;
+    });
 });
 
-Auth::routes();
+    // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= Cliente =-=-=-=-=-=-==-=-=-==-=--=-=-=-=-=//
+    Route::get('/meuservico', 'Site\SiteController@exibeServico')->name('meuservico');
+    Route::get('/', 'Site\SiteController@index')->name('/');
+    Route::get('/servicoslist/{id}', 'Site\SiteController@servicosList')->name('/servicoslist');
+    // =-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=//
 
 

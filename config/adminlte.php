@@ -98,7 +98,7 @@ return [
     */
 
     'menu' => [
-        'MENU',
+        'Menu' ,
         
         [
             'text'        => 'HOME',
@@ -164,14 +164,14 @@ return [
 
         'ACCOUNT SETTINGS',
         [
-            'text' => 'Profile',
-            'url'  => 'admin/settings',
+            'text' => 'Perfil',
+            'url'  => 'meuperfil',
             'icon' => 'user',
         ],
 
         [
-            'text' => 'Change Password',
-            'url'  => 'admin/settings',
+            'text' => 'Mudar Senha',
+            'url'  => 'mudasenha',
             'icon' => 'lock',
         ],
     ],
