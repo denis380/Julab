@@ -1,4 +1,4 @@
-@extends('adminlte::page')
+@extends('site.home.base')
 
 @section('css')
 <style>
@@ -22,7 +22,10 @@
     
     <form method="POST" action="\validacliente">
         {{ csrf_field() }}
-
+        <?php
+            $id_fornecedor = Auth::user()->id;
+        ?>
+        <input type="hidden" id="id_fornecedor" name="id_fornecedor" value="{{ $id_fornecedor }}">
         <div class="form-group">
           <label >Nome</label>
           <input type="text" name="nome" class="form-control" aria-describedby="emailHelp" onChange="javascript:this.value=this.value.toUpperCase();">

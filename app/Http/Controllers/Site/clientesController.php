@@ -42,7 +42,9 @@ class clientesController extends Controller
     //Retorna a View com a lista de clientes.
     public function listaClientes()
     {
-        $clientes = Clientes::all();
+
+        $id_fornecedor = auth()->user()->id;
+        $clientes = Clientes::where('id_fornecedor', $id_fornecedor)->get();
 
         return view('site.home.clientes.listaclientes', ['clientes' => $clientes]);
 

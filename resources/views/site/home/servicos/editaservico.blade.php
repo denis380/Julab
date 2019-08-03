@@ -1,4 +1,4 @@
-@extends('adminlte::page')
+@extends('site.home.base')
 
 @section('css')
     <style>
@@ -21,9 +21,16 @@
 
 @section('content')
     <div class="container">
-        <form action="">
+        <form method="POST" action="/storeservico/{{ $servico->id }}">
+            @csrf
             <p><label for="numero">Número: </label> {{ $servico->id }}</p>
             <p><label for="numero">Descrição: </label> {{ $servico->descricao }}</p>
+            <p>
+                <label >Data Atendimento: {{ $servico->data_atendimento->format('d/m/Y') }}</label>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <label >Alterar :</label>
+                <input type="date" name="data_atendimento" id="data_atendimento" value="{{ $servico->data_atendimento->format('d/m/Y') }}">
+            </p>
             <p>
                 <label>Estado do Serviço :</label>  
                 <select name="estado" class="form-control">
@@ -35,10 +42,6 @@
             <p><label for="nota"> Adicionar Nota : <input type="text" name="nota"></label></p>
             <button type="submit" class="btn btn-primary">Salvar</button>
         </form>
-        
-        
-
-
     </div>
 @stop
 @section('js')

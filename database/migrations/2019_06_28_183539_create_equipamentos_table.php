@@ -15,6 +15,8 @@ class CreateEquipamentosTable extends Migration
     {
         Schema::create('equipamentos', function (Blueprint $table) {
             $table->bigIncrements('id')->unsigned();
+            $table->bigInteger('id_fornecedor')->unsigned();
+            $table->foreign('id_fornecedor')->references('id')->on('users')->onDelete('cascade');
             $table->string('tipo');
             $table->string('fabricante');
             $table->string('modelo')->nullable();

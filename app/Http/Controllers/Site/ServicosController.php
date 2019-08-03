@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Site;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Servico;
+use App\Models\Nota;
 use App\Models\Event;
 use App\Models\Clientes;
 use App\Models\Equipamentos;
@@ -41,7 +42,8 @@ class ServicosController extends Controller
 
         // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-//
         $servicos = new Servico;
-
+        
+        $servicos->id_fornecedor = $request->id_fornecedor;
         $servicos->c_equipamento = $request->c_equipamento;
         $servicos->id_cliente = $request->id_cliente;
         $servicos->descricao = $request->descricao;
@@ -53,7 +55,9 @@ class ServicosController extends Controller
         // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-//
         $event = new Event;
 
-        $title = 'Atendimento : ' . substr($request->descricao, 0, 25);
+        $title = substr($request->descricao, 0, 25);
+        $event->id_fornecedor = $request->id_fornecedor;
+        $event->id_servico = $servicos->id;
         $event->title = $title;
         $event->color = '#009900';
         $event->start_date = $request->data_atendimento;
@@ -68,19 +72,22 @@ class ServicosController extends Controller
     public function abertos()
     {
         // Busca os chamados cujo o estado é aberto no DB.
-        $servicos = Servico::where('estado', 'aberto')->get();
+        $id_fornecedor = auth()->user()->id;
+        $servicos = Servico::where('estado', 'aberto')->where('id_fornecedor', $id_fornecedor)->get();
         return view('site.home.servicos.listachamados', ['servicos' => $servicos]);
     }
 
     public function ematendimento()
     {
-        $servicos = Servico::where('estado', 'atendimento')->get();
+        $id_fornecedor = auth()->user()->id;
+        $servicos = Servico::where('estado', 'atendimento')->where('id_fornecedor', $id_fornecedor)->get();
         return view('site.home.servicos.listachamados', ['servicos' => $servicos]);
     }
 
     public function fechados()
     {
-        $servicos = Servico::where('estado', 'fechado')->get();
+        $id_fornecedor = auth()->user()->id;
+        $servicos = Servico::where('estado', 'fechado')->where('id_fornecedor', $id_fornecedor)->get();
         return view('site.home.servicos.listachamados', ['servicos' => $servicos]);
     }
 //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-//
@@ -97,6 +104,51 @@ class ServicosController extends Controller
     {
         $servico = Servico::findOrFail($id);
         return view('site.home.servicos.editaservico', compact('servico'));
+    }
+
+    public function storeServico(Request $request, $id)
+    {
+
+        $validacao = $request->validate([
+            'estado' => 'required',
+            'nota' => 'required',
+        ]);
+//=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-//        
+        $servico = Servico::findOrFail($id);
+        $servico->estado = $request->estado;
+
+        $nota = new Nota();
+        $nota->nota = $request->nota;
+        $nota->id_servico = $servico->id;
+//=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-//
+
+//=-=-=-=-=-=-=-=-=-=-=-=-=-=- Controle dos Eventos -=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-//
+        if($servico->data_atendimento != $request->data_atendimento)
+        {
+            $event = Event::findOrFail($servico->id);
+            $servico->data_atendimento = $request->data_atendimento;
+            $event->start_date = $request->data_atendimento;
+            $event->end_date = $request->data_atendimento;
+        }
+
+        if($servico->estado == 'atendimento')
+        {
+            $event = Event::findOrFail($servico->id);
+            $event->color = '#00ff66';
+        }elseif($servico->estado == 'aberto')
+        {
+            $event = Event::findOrFail($servico->id);
+            $event->color = '#009900';
+            $event->start_date = $request->data_atendimento;
+            $event->end_date = $request->data_atendimento;
+        }
+        
+//=-=-=-=-=-=-=-=-=-=-=-=-=-Fim Controle dos Eventos -=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-//
+
+        $servico->save();
+        $nota->save();
+        $event->save();
+        return redirect('/admin');
     }
 
 }

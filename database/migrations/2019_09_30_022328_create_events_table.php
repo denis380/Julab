@@ -15,6 +15,10 @@ class CreateEventsTable extends Migration
     {
         Schema::create('events', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('id_fornecedor')->unsigned();
+            $table->foreign('id_fornecedor')->references('id')->on('users')->onDelete('cascade');
+            $table->bigInteger('id_servico')->unsigned();
+            $table->foreign('id_servico')->references('id')->on('servicos')->onDelete('cascade');
             $table->string('title');
             $table->string('color');
             $table->date('start_date');

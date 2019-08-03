@@ -15,6 +15,8 @@ class CreateServicosTable extends Migration
     {
         Schema::create('servicos', function (Blueprint $table) {
             $table->bigIncrements('id')->unsigned();
+            $table->bigInteger('id_fornecedor')->unsigned();
+            $table->foreign('id_fornecedor')->references('id')->on('users')->onDelete('cascade');
             $table->string('descricao');
             $table->bigInteger('id_cliente')->unsigned();
             $table->foreign('id_cliente')->references('id')->on('clientes')->onDelete('cascade');
@@ -22,7 +24,7 @@ class CreateServicosTable extends Migration
             $table->foreign('c_equipamento')->references('id')->on('equipamentos')->onDelete('cascade');
             $table->dateTime('data_previsao')->nullable();
             $table->dateTime('data_atendimento')->nullable();
-            $table->dateTime('data_entrega');
+            $table->dateTime('data_entrega')->nullable();
             $table->enum('estado', array('aberto', 'atendimento', 'fechado'));
             $table->timestamps();
         });

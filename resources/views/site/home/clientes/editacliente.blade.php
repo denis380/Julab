@@ -1,4 +1,4 @@
-@extends('adminlte::page')
+@extends('site.home.base')
 @section('css')
 <style>
     .container{

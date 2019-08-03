@@ -2,7 +2,6 @@
 
 return [
 
-
     'title' => 'JuLab',
 
     'title_prefix' => '',
@@ -96,13 +95,14 @@ return [
     | layout. The 'can' is a filter on Laravel's built in Gate functionality.
     |
     */
+    
 
     'menu' => [
         'Menu' ,
         
         [
             'text'        => 'HOME',
-            'url'         => '/',
+            'url'         => '/admin',
             'icon'        => 'home',
             'label_color' => 'success',
         ],

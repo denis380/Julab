@@ -30,6 +30,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/ematendimento', 'Site\ServicosController@ematendimento');
     Route::get('/fechados', 'Site\ServicosController@fechados');
     Route::get('/editaservico/{id}', 'Site\ServicosController@editaServico');
+    Route::post('/storeservico/{id}', 'Site\ServicosController@storeServico');
     // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-//
 
     // =-=-=-=-=-=-=--=-=-=-=-=-=-= Perfil Usuario =-=-=-=-=-=-==-=-=-=-=-=-=-=-=//
@@ -41,8 +42,7 @@ Route::group(['middleware' => 'auth'], function(){
 
 
     Route::get('/teste', function(){
-        $o = '123456789abcdefghijklmnopqrstuvxz';
-        $a = substr($o, 0, 9);
+        $a = date('Y-m-d');
         echo $a;
     });
 });

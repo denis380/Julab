@@ -12,8 +12,10 @@ class EquipamentosController extends Controller
 {
 
     
-    public function exibeEquipamentos(){
-        $equipamentos = Equipamentos::all();
+    public function exibeEquipamentos()
+    {
+        $id_fornecedor = auth()->user()->id;
+        $equipamentos = Equipamentos::where('id_fornecedor', $id_fornecedor)->get();
         return view('site.home.equipamentos.equipamentos', ['equipamentos' => $equipamentos]);
     }
 
@@ -33,6 +35,7 @@ class EquipamentosController extends Controller
 
         $equipamentos = new Equipamentos;
 
+    
         $equipamentos->create($request->all());
 
         return redirect('equipamentos');

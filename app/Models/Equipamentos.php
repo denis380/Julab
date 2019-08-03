@@ -8,7 +8,7 @@ use App\Models\Servico;
 class Equipamentos extends Model
 {
     protected $table = 'equipamentos';
-    protected $fillable = ['tipo', 'fabricante', 'modelo', 'obs'];
+    protected $fillable = ['tipo', 'fabricante', 'modelo', 'obs', 'id_fornecedor'];
     protected $guarded = ['id', 'created_at', 'update_at'];
 
 

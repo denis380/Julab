@@ -1,4 +1,4 @@
-@extends('adminlte::page')
+@extends('site.home.base')
 @section('css')
 <style>
     .container{
@@ -22,6 +22,10 @@
     <form method="POST" action="\validaservico">
         {{ csrf_field() }}
 
+        <?php
+            $id_fornecedor = Auth::user()->id;
+        ?>
+        <input type="hidden" id="id_fornecedor" name="id_fornecedor" value="{{ $id_fornecedor }}">
         <div class="form-group">  
             <label>Equipamento :</label>
             <select name="c_equipamento" class="form-control">

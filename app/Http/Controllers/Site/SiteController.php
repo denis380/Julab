@@ -6,17 +6,22 @@ use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\Servico;
 use App\Models\Clientes;
+use App\Models\Nota;
 use App\Http\Controllers\Controller;
 
 class SiteController extends Controller
 {
     
     public function admin(){
-
-        $events = Event::all();
+        
+        $id_fornecedor = auth()->user()->id;
+        $events = Event::where('id_fornecedor', $id_fornecedor)->get();
+        
+        $now = Date('Y-m-d');
         $event = [];
         
-        foreach($events as $row){
+        foreach($events as $row)
+        {
             $enddate = $row->end_date." 24:00:00";
             $event[] = \Calendar::event(
                 $row->title,
@@ -29,7 +34,10 @@ class SiteController extends Controller
                 ]
             );
         }
+
+
         $calendar = \Calendar::addEvents($event);
+
         return view('site.home.admin', compact('calendar'));
     }
 
@@ -70,6 +78,7 @@ class SiteController extends Controller
     public function servicosList($id)
     {
         $servico = Servico::find($id);
-        return view('site.index.servicoslist', ['servico' => $servico]);
+        $notas = Nota::WhereIn('id_servico', [$servico->id])->get();
+        return view('site.index.servicoslist', ['servico' => $servico, 'notas' => $notas]);
     }
 }

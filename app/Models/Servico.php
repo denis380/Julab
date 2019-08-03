@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Equipamentos;
 use App\Models\Clientes;
+use App\Models\Nota;
 
 class Servico extends Model
 {
@@ -12,6 +13,7 @@ class Servico extends Model
     protected $dates = ['data_previsao', 'data_atendimento', 'data_entrega'];
     protected $fillable = 
     [
+        'id_fornecedor',
         'descricao',
         'id_cliente',
         'c_equipamento',
@@ -28,5 +30,10 @@ class Servico extends Model
     public function cliente()
     {
         return $this->belongsTo(Clientes::class, 'id_cliente');
+    }
+
+    public function nota()
+    {
+        return $this->hasMany(Nota::class, 'id_servico');
     }
 }

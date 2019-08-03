@@ -15,6 +15,8 @@ class CreateClientesTable extends Migration
     {
         Schema::create('clientes', function (Blueprint $table) {
             $table->bigIncrements('id')->unsigned();
+            $table->bigInteger('id_fornecedor')->unsigned();
+            $table->foreign('id_fornecedor')->references('id')->on('users')->onDelete('cascade');
             $table->string('nome');
             $table->string('documento');
             $table->string('cidade');
