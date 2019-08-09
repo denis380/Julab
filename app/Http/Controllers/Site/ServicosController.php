@@ -21,7 +21,12 @@ class ServicosController extends Controller
         return view('site.home.servicos.novochamado', ['equipamentos' => $equipamentos, 'clientes' => $clientes]);
     }
 
-    
+    public function deletaServico($id)
+    {
+        $servico = Servico::findOrFail($id);
+        $servico->delete();
+        return redirect ('/admin'); 
+    }
 
     public function setDateAttribute($value)
     {
@@ -50,12 +55,24 @@ class ServicosController extends Controller
         $servicos->data_atendimento = $request->data_atendimento;
         $servicos->data_previsao = $request->data_previsao;
         $servicos->estado = $request->estado;
+
+        // =-=-=-=-=-=-=-==-=-Verificação de data-=-=-=-=-=-=-=-=-=-//
+        if($request->data_atendimento < \Carbon\Carbon::now())
+        {
+            return back()->with('message', 'Data de atendimento invalida'); 
+        }
+        if($request->data_previsao < $request->data_atendimento)
+        {
+            return back()->with('message', 'Data de entrega inválida');
+        }
+        // =-=-=-=-=-=-=--=-= Fim validação data-=-=-=-=-=-=-=-=-=-//
+
         $servicos->save();
 
         // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-//
         $event = new Event;
 
-        $title = substr($request->descricao, 0, 25);
+        $title = 'N°: ' . $servicos->id . " - " . substr($request->descricao, 0, 25);
         $event->id_fornecedor = $request->id_fornecedor;
         $event->id_servico = $servicos->id;
         $event->title = $title;
@@ -103,7 +120,8 @@ class ServicosController extends Controller
     public function editaServico($id)
     {
         $servico = Servico::findOrFail($id);
-        return view('site.home.servicos.editaservico', compact('servico'));
+        $notas = Nota::WhereIn('id_servico', [$servico->id])->get();
+        return view('site.home.servicos.editaservico', ['servico' => $servico, 'notas' => $notas]);
     }
 
     public function storeServico(Request $request, $id)
@@ -115,34 +133,59 @@ class ServicosController extends Controller
         ]);
 //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-//        
         $servico = Servico::findOrFail($id);
-        $servico->estado = $request->estado;
+        
 
         $nota = new Nota();
         $nota->nota = $request->nota;
         $nota->id_servico = $servico->id;
+        $servico->estado = $request->estado;
 //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-//
 
+
+
 //=-=-=-=-=-=-=-=-=-=-=-=-=-=- Controle dos Eventos -=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-//
-        if($servico->data_atendimento != $request->data_atendimento)
+
+        if($servico->data_atendimento != $request->data_atendimento && $request->data_atendimento != null)
         {
-            $event = Event::findOrFail($servico->id);
+
+            // =-=-=-=-=-=-=-==-=-Verificação de data-=-=-=-=-=-=-=-=-=-//
+            if($request->data_atendimento < \Carbon\Carbon::now())
+            {
+                return back()->with('message', 'Data de atendimento invalida'); 
+            }
+            // =-=-=-=-=-=-=--=-= Fim validação data-=-=-=-=-=-=-=-=-=-//
+
+            $event = Event::findOrFail($servico->eventos->id);
             $servico->data_atendimento = $request->data_atendimento;
             $event->start_date = $request->data_atendimento;
             $event->end_date = $request->data_atendimento;
-        }
-
-        if($servico->estado == 'atendimento')
+            if($servico->estado == 'atendimento')
+            {
+                $event->color = '#000000';
+            }elseif($servico->estado == 'aberto')
+            {
+                $event->color = '#009900';
+            }elseif($servico->estado == 'fechado')
+            {
+                $event->color = '#ffffff';  
+            }
+            
+        }else
         {
-            $event = Event::findOrFail($servico->id);
-            $event->color = '#00ff66';
-        }elseif($servico->estado == 'aberto')
-        {
-            $event = Event::findOrFail($servico->id);
-            $event->color = '#009900';
-            $event->start_date = $request->data_atendimento;
-            $event->end_date = $request->data_atendimento;
-        }
-        
+            if($servico->estado == 'atendimento')
+            {
+                $event = Event::findOrFail($servico->eventos->id);
+                $event->color = '#CDAD00';
+            }elseif($servico->estado == 'aberto')
+            {
+                $event = Event::findOrFail($servico->eventos->id);
+                $event->color = '#009900';
+            }elseif($servico->estado == 'fechado')
+            {
+                $event = Event::findOrFail($servico->eventos->id);
+                $event->color = '#ffffff';  
+            }
+        }     
 //=-=-=-=-=-=-=-=-=-=-=-=-=-Fim Controle dos Eventos -=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-//
 
         $servico->save();

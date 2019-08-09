@@ -79,6 +79,7 @@ class SiteController extends Controller
     {
         $servico = Servico::find($id);
         $notas = Nota::WhereIn('id_servico', [$servico->id])->get();
+        
         return view('site.index.servicoslist', ['servico' => $servico, 'notas' => $notas]);
     }
 }

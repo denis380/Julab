@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Equipamentos;
 use App\Models\Clientes;
 use App\Models\Nota;
+use App\Models\Event;
 
 class Servico extends Model
 {
@@ -35,5 +36,10 @@ class Servico extends Model
     public function nota()
     {
         return $this->hasMany(Nota::class, 'id_servico');
+    }
+
+    public function eventos()
+    {
+        return $this->hasOne(Event::class, 'id_servico');
     }
 }

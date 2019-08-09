@@ -1,5 +1,5 @@
 <?php
-
+Use App\Models\Servico;
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function(){
@@ -31,6 +31,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/fechados', 'Site\ServicosController@fechados');
     Route::get('/editaservico/{id}', 'Site\ServicosController@editaServico');
     Route::post('/storeservico/{id}', 'Site\ServicosController@storeServico');
+    Route::post('/deletaservico/{id}', 'Site\ServicosController@deletaServico');
     // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-//
 
     // =-=-=-=-=-=-=--=-=-=-=-=-=-= Perfil Usuario =-=-=-=-=-=-==-=-=-=-=-=-=-=-=//
@@ -42,8 +43,9 @@ Route::group(['middleware' => 'auth'], function(){
 
 
     Route::get('/teste', function(){
-        $a = date('Y-m-d');
-        echo $a;
+        
+        $a = Servico::find(4)->eventos;
+        dd($a);
     });
 });
 

@@ -147,7 +147,7 @@ return [
         ],
         [
             'text'       => 'Abertos',
-            'icon_color' => 'red',
+            'icon_color' => 'green',
             'url'        => 'abertos',
         ],
         [

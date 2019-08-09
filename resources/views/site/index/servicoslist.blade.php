@@ -19,6 +19,12 @@
             font-size: 0.8rem;
             color: gray;
         }
+        .table .thead-dark th {
+            color: #fff;
+            background-color: #212529;
+            border-color: #32383e;
+            
+        }
     </style>
 @endsection
 

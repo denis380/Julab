@@ -8,6 +8,7 @@
 @endsection
 
 @section('content')
+<!------------------------------------- Erros ----------------------------------->
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -17,6 +18,15 @@
             </ul>
         </div>
     @endif
+
+    @if(session()->has('message'))
+
+    <div class="container alert alert-danger">
+        {{ session()->get('message') }}
+    </div>
+    @endif   
+<!------------------------------------- Erros ------------------------------------>    
+    
 <div class="container">
     <h1>Novo Serviço</h1>
     <form method="POST" action="\validaservico">
