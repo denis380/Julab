@@ -6,7 +6,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/admin', 'Site\SiteController@admin')->name('admin');
 
     // =-=-=-=-=-=-=-=-=-=-=-=-= Rotas de Equipamentos =-=-=-=-=-=-=-=-=-=-=-=-=-//
-    Route::get('/equipamentos', 'site\EquipamentosController@exibeEquipamentos');
+    Route::get('/equipamentos', 'Site\EquipamentosController@exibeEquipamentos');
     Route::get('/novoequip', 'Site\EquipamentosController@novoEquipamento');
     Route::post('/validaequip', 'Site\EquipamentosController@cadastrar');
     Route::get('/editaequip/{id}', 'Site\EquipamentosController@editaEquipamento');

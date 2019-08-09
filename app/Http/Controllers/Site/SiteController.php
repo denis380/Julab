@@ -53,7 +53,7 @@ class SiteController extends Controller
         ]); 
 
         //Recebe o nome do usuario e acha seu id no DB.
-        $nome = $request->nome;
+        $nome = strtoupper($request->nome);
         $cliente = Clientes::WhereIn('nome', [$nome])->get();
 
         

@@ -76,7 +76,7 @@ class ServicosController extends Controller
         $event->id_fornecedor = $request->id_fornecedor;
         $event->id_servico = $servicos->id;
         $event->title = $title;
-        $event->color = '#009900';
+        $event->color = '#CDAD00';
         $event->start_date = $request->data_atendimento;
         $event->end_date = $request->data_atendimento;
 
@@ -161,13 +161,13 @@ class ServicosController extends Controller
             $event->end_date = $request->data_atendimento;
             if($servico->estado == 'atendimento')
             {
-                $event->color = '#000000';
+                $event->color = '#CDAD00';
             }elseif($servico->estado == 'aberto')
             {
                 $event->color = '#009900';
             }elseif($servico->estado == 'fechado')
             {
-                $event->color = '#ffffff';  
+                $event->color = '#CAE1FF';  
             }
             
         }else
@@ -183,7 +183,7 @@ class ServicosController extends Controller
             }elseif($servico->estado == 'fechado')
             {
                 $event = Event::findOrFail($servico->eventos->id);
-                $event->color = '#ffffff';  
+                $event->color = '#CAE1FF';  
             }
         }     
 //=-=-=-=-=-=-=-=-=-=-=-=-=-Fim Controle dos Eventos -=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-//
