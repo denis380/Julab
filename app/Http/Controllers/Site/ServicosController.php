@@ -16,8 +16,9 @@ class ServicosController extends Controller
 {
     public function novoServico()
     {
-        $clientes = Clientes::orderBy('nome')->paginate(10);
-        $equipamentos = Equipamentos::orderBy('tipo')->paginate(10);
+        $id_fornecedor = auth()->user()->id;
+        $clientes = Clientes::where('id_fornecedor', $id_fornecedor)->orderBy('nome')->paginate(10);
+        $equipamentos = Equipamentos::where('id_fornecedor', $id_fornecedor)->orderBy('tipo')->paginate(10);
         return view('site.home.servicos.novochamado', ['equipamentos' => $equipamentos, 'clientes' => $clientes]);
     }
 
