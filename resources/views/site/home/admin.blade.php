@@ -25,4 +25,20 @@
     <script src="/js/lib/moment.min.js"></script>
     <script src="/js/fullcalendar.min.js"></script>
     <script src="/js/pt-br.js"></script>
+
+    <script>
+        var navbar = document.querySelector('.nav.navbar-nav');
+        var li = document.createElement('li');
+        var a = document.createElement('a');
+        var i = document.createElement('i');
+
+        i.innerHTML = "Olá <?php 
+                        $nome = Auth::user()->name;
+                        $pnome = explode(" ", $nome);
+                        echo $pnome[0];
+                    ?>";
+        a.appendChild(i);
+        li.appendChild(a);
+        navbar.appendChild(li); 
+    </script>
 @endsection

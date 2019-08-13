@@ -39,13 +39,17 @@ Route::group(['middleware' => 'auth'], function(){
     Route::post('/storesenha', 'Prestador\PrestadorController@storeSenha');
     Route::get('/meuperfil', 'Prestador\PrestadorController@meuPerfil');
     Route::post('/storeperfil', 'Prestador\PrestadorController@storePerfil');
+    Route::get('home', 'Site\SiteController@admin')->name('admin');
     // =-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=//
 
 
     Route::get('/teste', function(){
         
-        $a = Servico::find(4)->eventos;
-        dd($a);
+        Mail::send('site.teste', ['nome' => 'Denis'], function($m){
+            $m->from('denis380@gmail.com', 'Denis');
+            $m->to('denisrs.cam@gmail.com');
+
+        });
     });
 });
 
