@@ -82,4 +82,9 @@ class SiteController extends Controller
         
         return view('site.index.servicoslist', ['servico' => $servico, 'notas' => $notas]);
     }
+
+    public function wellcome()
+    {
+        return view('site.index.wellcome');
+    }
 }

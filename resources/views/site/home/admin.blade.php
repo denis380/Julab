@@ -16,7 +16,6 @@
         {!! $calendar->calendar() !!}
         {!! $calendar->script() !!}
     </div>
-   
     
 @endsection
 

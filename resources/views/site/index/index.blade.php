@@ -1,15 +1,54 @@
 @extends('site.index.base')
 
+@section('head')
+    <style>
+        body, html 
+        {
+            height: 100%;
+        }
+        .bg 
+        {
+        /* The image used */
+        background-image: url('img/bg-index.jpg');
+
+        /* Full height */
+        height: 100%;
+
+        /* Center and scale the image nicely */
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        font-weight: bolder;
+        }
+        .div-centro
+        {
+          margin-top: 3%;
+        }
+        .txt
+        {
+          -webkit-text-stroke-width: 1px;
+          -webkit-text-stroke-color: #000;
+        }
+    
+    </style>
+@endsection
+
 @section('central')
     <!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=Central-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- -->
-<div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
+    
+    
+     
+<div class="position-relative overflow-hidden text-center bg-light">
+  <div class="bg">
     <div class="col-md-5 p-lg-5 mx-auto my-5">
-      <h1 class="display-4 font-weight-normal">JuLab</h1>
-      <p class="lead font-weight-normal">Seu gerenciador de serviços em manutenção eletrônica.</p>
+      <h1 class="display-4 font-weight-normal txt" style="font-size:4rem">JuLab</h1>
+      <p class="lead font-weight-normal txt" style="font-size:1.7rem">Seu gerenciador de serviços em manutenção eletrônica.</p>
       <a class="btn btn-outline-secondary" href="{{ url('/register') }}">Cadastre-se</a>
     </div>
     <div class="product-device box-shadow d-none d-md-block"></div>
     <div class="product-device product-device-2 box-shadow d-none d-md-block"></div>
+  </div>
+    
   </div>
 <!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=Central-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- -->  
 
@@ -28,7 +67,7 @@
         {{ session()->get('message') }}
     </div>
 @endif    
-<div class="container">
+<div class="container div-centro">
 <p class="lead font-weight-normal">Verifique a situação do seu serviço</p>
 <form action="{{url('meuservico')}}">
   <div class="form-group row">

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Clientes;
 use Redirect;
+use Mail;
 
 class clientesController extends Controller
 {
@@ -34,8 +35,21 @@ class clientesController extends Controller
 
         $cliente = new Clientes;
 
+        // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-//
+        $email = $request->email;
+        $from = auth()->user()->email;
+        $name = auth()->user()->name;
+        $resultado = Mail::send('emails.confirmacao', ['nome' => $request->nome, 'fornecedor' => auth()->user()->name], function($m) use ($email, $from, $name){
+            $m->from($from, $name);
+            $m->subject('Confirmação de Email');
+            $m->to($email);
+        });
+        // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-//
+
         $cliente->create($request->all());
         $request->session()->flash('alert-success', 'Cliente adicionado com sucesso!');
+
+
         return redirect ('listaclientes');
     }
 

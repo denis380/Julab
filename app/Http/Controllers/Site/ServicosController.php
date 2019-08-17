@@ -11,6 +11,7 @@ use App\Models\Clientes;
 use App\Models\Equipamentos;
 use App\User;
 use Illuminate\Support\Facades\DB;
+use Mail;
 
 class ServicosController extends Controller
 {
@@ -168,7 +169,19 @@ class ServicosController extends Controller
                 $event->color = '#008B45';
             }elseif($servico->estado == 'fechado')
             {
-                $event->color = '#CAE1FF';  
+                $event->color = '#CAE1FF';
+                
+                //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-//
+                $email = $servico->cliente->email;
+                $from = auth()->user()->email;
+                $name = auth()->user()->name;
+                
+                $resultado = Mail::send('emails.chamado_fechado', ['cliente' => $servico->cliente, 'fornecedor' => auth()->user(), 'servico' => $servico], function($m) use ($email, $from, $name){
+                    $m->from($from, $name);
+                    $m->subject('Serviço Finalizado');
+                    $m->to($email);
+                });
+                //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-//
             }
             
         }else
@@ -185,6 +198,19 @@ class ServicosController extends Controller
             {
                 $event = Event::findOrFail($servico->eventos->id);
                 $event->color = '#CAE1FF';  
+
+                //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-//
+                $email = $servico->cliente->email;
+                $from = auth()->user()->email;
+                $name = auth()->user()->name;
+                
+                $resultado = Mail::send('emails.chamado_fechado', ['cliente' => $servico->cliente, 'fornecedor' => auth()->user(), 'servico' => $servico], function($m) use ($email, $from, $name){
+                    $m->from($from, $name);
+                    $m->subject('Serviço Finalizado');
+                    $m->to($email);
+                });
+                //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-//
+               
             }
         }     
 //=-=-=-=-=-=-=-=-=-=-=-=-=-Fim Controle dos Eventos -=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-//

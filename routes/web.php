@@ -1,6 +1,6 @@
 <?php
 Use App\Models\Servico;
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::group(['middleware' => 'auth'], function(){
     Route::get('/admin', 'Site\SiteController@admin')->name('admin');
@@ -58,6 +58,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/meuservico', 'Site\SiteController@exibeServico')->name('meuservico');
     Route::get('/', 'Site\SiteController@index')->name('/');
     Route::get('/servicoslist/{id}', 'Site\SiteController@servicosList')->name('/servicoslist');
+    Route::get('/wellcome', 'Site\SiteController@wellcome')->name('/wellcome');
     // =-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=//
 
 
