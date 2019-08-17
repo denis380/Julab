@@ -40,6 +40,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/meuperfil', 'Prestador\PrestadorController@meuPerfil');
     Route::post('/storeperfil', 'Prestador\PrestadorController@storePerfil');
     Route::get('home', 'Site\SiteController@admin')->name('admin');
+    Route::get('/excluir', 'Prestador\PrestadorController@excluir');
     // =-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=//
 
 

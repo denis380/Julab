@@ -119,6 +119,9 @@
            <div class="form-group" style="margin-top: 5px;">
                 <a href="{{url ('/admin')  }}" class="btn btn-primary btn-block">Voltar</a>
             </div>
+            <div class="form-group" style="margin-top: 5px;">
+                <a href="{{url ('/excluir')  }}" class="btn btn-danger btn-block" onclick="return confirm('Tem certeza que deseja excluir seu cadastro?')">Excluir Conta</a>
+            </div>
         </div>
          
         <!-- /.form-box -->

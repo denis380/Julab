@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Equipamentos;
 use Illuminate\Support\Facades\Validator;
+use App\User;
+use Auth;
 
 class PrestadorController extends Controller
 {
@@ -83,5 +85,14 @@ class PrestadorController extends Controller
 
         }
         
+    }
+
+    public function excluir()
+    {
+        $id = Auth::user()->id;
+        $prestador = User::findOrFail($id);
+        $prestador->delete();
+
+        return redirect('/');
     }
 }
