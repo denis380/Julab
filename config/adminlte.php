@@ -170,7 +170,7 @@ return [
         ],
 
         [
-            'text' => 'Mudar Senha',
+            'text' => 'Alterar Senha',
             'url'  => 'mudasenha',
             'icon' => 'lock',
         ],

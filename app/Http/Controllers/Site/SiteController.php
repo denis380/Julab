@@ -8,6 +8,7 @@ use App\Models\Servico;
 use App\Models\Clientes;
 use App\Models\Nota;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Redirect;
 
 class SiteController extends Controller
 {
@@ -54,25 +55,16 @@ class SiteController extends Controller
 
         //Recebe o nome do usuario e acha seu id no DB.
         $nome = strtoupper($request->nome);
-        $cliente = Clientes::WhereIn('nome', [$nome])->get();
-
-        
-        //Valida se o nome do cliente foi encontrado no DB.
-        if(count($cliente) == 0)
-        {
-            return back()->with('message', 'Usuário não encontrado!');
-        }else
-        {
-            $c_cliente = $cliente[0]->id;
-        
-            //Pega todos os serviços relacionados ao cliente.
-            $servicos = Servico::WhereIn('id_cliente', [$c_cliente])->get();
-
+        $result = Clientes::where('nome', 'like',  $nome)->get();
+        if(count($result) > 1){
+            return Redirect::back()->with('status', compact('result'));
+            //dd('abre a porra do modal');
+        }elseif(count($result) == 1){
+            $servicos = Servico::where('id_cliente', $result[0]->id)->get();
             return view('site.index.exibeservico', compact('servicos'));
-        }
-
-
-        
+        }else{
+            return back()->with('message', 'Usuário não encontrado!');
+        } 
     }
 
     public function servicosList($id)

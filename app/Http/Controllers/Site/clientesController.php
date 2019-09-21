@@ -34,18 +34,6 @@ class clientesController extends Controller
         ]);
 
         $cliente = new Clientes;
-
-        // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-//
-        $email = $request->email;
-        $from = auth()->user()->email;
-        $name = auth()->user()->name;
-        $resultado = Mail::send('emails.confirmacao', ['nome' => $request->nome, 'fornecedor' => auth()->user()->name], function($m) use ($email, $from, $name){
-            $m->from($from, $name);
-            $m->subject('Confirmação de Email');
-            $m->to($email);
-        });
-        // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-//
-
         $cliente->create($request->all());
         $request->session()->flash('alert-success', 'Cliente adicionado com sucesso!');
 

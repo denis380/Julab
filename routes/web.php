@@ -45,13 +45,7 @@ Route::group(['middleware' => 'auth'], function(){
 
 
     Route::get('/teste', function(){
-        
-        Mail::send('site.teste', ['nome' => 'Denis'], function($m){
-            $m->from('denis380@gmail.com', 'Denis');
-            $m->subject('Email Teste');
-            $m->to('denisrs.cam@gmail.com');
-
-        });
+        return view('site.teste');
     });
 });
 
