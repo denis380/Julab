@@ -54,6 +54,8 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/', 'Site\SiteController@index')->name('/');
     Route::get('/servicoslist/{id}', 'Site\SiteController@servicosList')->name('/servicoslist');
     Route::get('/wellcome', 'Site\SiteController@wellcome')->name('/wellcome');
+    Route::get('/sobre', 'Site\SiteController@exibeSobre')->name('/sobre');
+    Route::get('/cliente', 'Site\SiteController@exibeCliente')->name('/cliente');
     // =-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=//
 
 

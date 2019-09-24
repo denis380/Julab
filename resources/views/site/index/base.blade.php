@@ -33,12 +33,12 @@
     <nav class="site-header sticky-top py-1">
         <div class="container d-flex flex-column flex-md-row justify-content-between">
           <a class="py-2" href="#">
-              <img class="img-thumbnail" src="img\logotipo.jpg" alt="julab">
+              <img class="img-thumbnail" src="img\logotipo.jpg" alt="julab" id="logoTipo">
           </a>
           <a class="py-2 d-none d-md-inline-block" href="/">Home</a>
-          <a class="py-2 d-none d-md-inline-block" href="#">Cliente</a>
+          <a class="py-2 d-none d-md-inline-block" href="/cliente">Cliente</a>
           <a class="py-2 d-none d-md-inline-block" href="/admin">Sou Prestador</a>
-          <a class="py-2 d-none d-md-inline-block" href="#">Sobre</a>
+          <a class="py-2 d-none d-md-inline-block" href="/sobre">Sobre</a>
       
         </div>
       </nav>
@@ -61,16 +61,6 @@
               <li><a class="text-muted" href="#">denis380@gmail.com</a></li>
               <li><a class="text-muted" href="#">(31) 97303-7490</a></li>
 
-            </ul>
-          </div>
-          
-          <div class="col-6 col-md">
-            <h5>Parceiros</h5>
-            <ul class="list-unstyled text-small">
-              <li><a class="text-muted" href="#">Apoiador 1</a></li>
-              <li><a class="text-muted" href="#">Apoiador 2</a></li>
-              <li><a class="text-muted" href="#">Apoiador 3</a></li>
-              <li><a class="text-muted" href="#">Apoiador 4</a></li>
             </ul>
           </div>
         </div>

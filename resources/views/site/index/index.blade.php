@@ -48,8 +48,7 @@
     <div class="product-device box-shadow d-none d-md-block"></div>
     <div class="product-device product-device-2 box-shadow d-none d-md-block"></div>
   </div>
-    
-  </div>
+</div>
 <!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=Central-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- -->  
 
 @if ($errors->any())
@@ -83,5 +82,6 @@
     </div>
   </div>
 </form>
+
 </div>
 @endsection

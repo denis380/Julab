@@ -79,4 +79,14 @@ class SiteController extends Controller
     {
         return view('site.index.wellcome');
     }
+
+    public function exibeSobre()
+    {
+        return view('site.index.sobre');
+    }
+
+    public function exibeCliente()
+    {
+        return view('site.index.cliente');
+    }
 }
