@@ -1,3 +1,4 @@
+@extends('adminlte::master')
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -17,7 +18,10 @@
 
     footer 
     {
-        margin-top: auto;
+      margin-top: auto;
+    }
+    .py-4{
+      font-size: 2.5rem !important;
     }
   </style>
   <meta charset="UTF-8">
@@ -31,14 +35,11 @@
 <body>
 <!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-NavBar-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- -->
     <nav class="site-header sticky-top py-1">
-        <div class="container d-flex flex-column flex-md-row justify-content-between">
-          <a class="py-2" href="#">
-              <img class="img-thumbnail" src="img\logotipo.jpg" alt="julab" id="logoTipo">
-          </a>
-          <a class="py-2 d-none d-md-inline-block" href="/">Home</a>
-          <a class="py-2 d-none d-md-inline-block" href="/cliente">Cliente</a>
-          <a class="py-2 d-none d-md-inline-block" href="/admin">Sou Prestador</a>
-          <a class="py-2 d-none d-md-inline-block" href="/sobre">Sobre</a>
+        <div class="container d-flex flex-box flex-md-row justify-content-between">
+          <a class="py-4 d-md-inline-block" href="/">Home</a>
+          <a class="py-4 d-md-inline-block" href="/cliente">Cliente</a>
+          <a class="py-4 d-md-inline-block" href="/admin">Sou Prestador</a>
+          <a class="py-4 d-md-inline-block" href="/sobre">Sobre</a>
       
         </div>
       </nav>

@@ -41,6 +41,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::post('/storeperfil', 'Prestador\PrestadorController@storePerfil');
     Route::get('home', 'Site\SiteController@admin')->name('admin');
     Route::get('/excluir', 'Prestador\PrestadorController@excluir');
+    Route::get('/dicas', 'Prestador\PrestadorController@dicas')->name('dicas');
     // =-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=//
 
 

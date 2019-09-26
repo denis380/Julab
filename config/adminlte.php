@@ -126,7 +126,7 @@ return [
         [
             'text' => 'Equipamentos',
             'url' => 'equipamentos',
-            'icon'=> 'user',
+            'icon'=> 'television',
             'submenu' => [
                 [
                     'text' => 'Novo',
@@ -144,6 +144,7 @@ return [
         [
             'text' => 'Novo',
             'url'  => 'novoservico',
+            'icon'  => 'plus',
         ],
         [
             'text'       => 'Abertos',
@@ -161,7 +162,6 @@ return [
             'url'        => 'fechados',
         ],
 
-
         'ACCOUNT SETTINGS',
         [
             'text' => 'Perfil',
@@ -174,6 +174,14 @@ return [
             'url'  => 'mudasenha',
             'icon' => 'lock',
         ],
+
+        'MANUAL',
+        [
+            'text' => 'Dicas',
+            'url'  => 'dicas',
+            'icon' => 'info',
+        ],
+
     ],
 
     /*

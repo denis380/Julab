@@ -45,7 +45,7 @@
             padding-right: 3%;
             padding-top: 4%;
             margin-bottom: 3%;
-            font-size: 1.5rem
+            font-size: 2.1rem
         }
         .footer{
             padding-left: 3%;
@@ -53,6 +53,7 @@
             padding-top: 4%;
             text-align: center;
             font-style: italic;
+            font-size: 2.0rem;
         }
     </style>
 @endsection

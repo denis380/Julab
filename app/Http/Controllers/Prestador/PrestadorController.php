@@ -95,4 +95,8 @@ class PrestadorController extends Controller
 
         return redirect('/');
     }
+
+    public function dicas(){
+        return view('site.home.usuario.dicas');
+    }
 }
