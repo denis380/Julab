@@ -21,7 +21,7 @@
       margin-top: auto;
     }
     .py-4{
-      font-size: 2.5rem !important;
+      font-size: 1.5rem !important;
     }
   </style>
   <meta charset="UTF-8">
@@ -36,10 +36,10 @@
 <!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-NavBar-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- -->
     <nav class="site-header sticky-top py-1">
         <div class="container d-flex flex-box flex-md-row justify-content-between">
-          <a class="py-4 d-md-inline-block" href="/">Home</a>
-          <a class="py-4 d-md-inline-block" href="/cliente">Cliente</a>
-          <a class="py-4 d-md-inline-block" href="/admin">Sou Prestador</a>
-          <a class="py-4 d-md-inline-block" href="/sobre">Sobre</a>
+          <a class="py-4 d-md-inline-block" href="/"><i class="icon fa fa-home"></i> Home</a>
+          <a class="py-4 d-md-inline-block" href="/cliente"><i class="icon fa fa-user"></i> Cliente</a>
+          <a class="py-4 d-md-inline-block" href="/admin"><i class="icon fa fa-keyboard-o"></i> Sou Prestador</a>
+          <a class="py-4 d-md-inline-block" href="/sobre"><i class="icon fa fa-info"></i> Sobre</a>
       
         </div>
       </nav>

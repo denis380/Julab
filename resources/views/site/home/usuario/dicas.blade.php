@@ -2,17 +2,17 @@
 @section('base_css')
 <style>
     .center{
-        margin-left: 40% !important;
+        /* margin-left: 40%; */
     }
     .legenda{
-        font-size: 3.0rem;
+        font-size: 2.0rem;
         color: black;
         font-weight: bolder;
     }
 </style>
 @endsection
 @section('content')<div class="col-md-6">
-        <div class="box box-solid center">
+        <div class="box box-solid">
           <div class="box-header with-border">
             <h1 class="box-title">COMO COMEÇAR?</h1>
           </div>

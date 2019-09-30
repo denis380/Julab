@@ -40,7 +40,7 @@
             padding-right: 3%;
             padding-top: 4%;
             margin-bottom: 5%;
-            font-size: 2.5rem;
+            font-size: 1.5rem;
         }
         .footer{
             padding-left: 3%;
@@ -51,7 +51,7 @@
         }
         .conteudo{
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            font-size: 2.0rem;
+            font-size: 1.3rem;
         }
         .lista{
             text-align: left !important;
