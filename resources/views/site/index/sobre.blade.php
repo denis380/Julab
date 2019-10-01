@@ -57,6 +57,22 @@
             text-align: left !important;
             margin-left: 5%;
         }
+        @media only screen and (max-width: 800px) {
+          .centro{ 
+            margin-left: 20%;
+            height: 130%;
+            width: 60%;
+          }
+          .cabecalho{
+              font-size: 1.0rem;
+          }
+          .sumir{
+            display: none;
+          }
+          .img{
+              display: none;
+          }
+        }
     </style>
 @endsection
 @endsection
@@ -86,7 +102,7 @@
         </div>
         
     </div>
-    <img src="img/img_sobre.jpg" class="img-fluid" alt="gestao_de_serviços">
+    <img src="img/img_sobre.jpg" class="img-fluid img" alt="gestao_de_serviços">
 </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

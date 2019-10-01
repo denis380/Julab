@@ -55,6 +55,20 @@
             font-style: italic;
             font-size: 1.3rem;
         }
+        @media only screen and (max-width: 800px) {
+          .centro{ 
+            height: 60%;
+          }
+          .cabecalho{
+              font-size: 1.0rem;
+          }
+          .lado{
+              height: 60%;
+          }
+          .img{
+              display: none;
+          }
+        }
     </style>
 @endsection
 
@@ -70,7 +84,7 @@
         <label class="cabecalho">Então exibirá todos os serviços cadastrados em seu nome.</label>
         <label class="footer"></label>    
     </div>
-    <img src="img/img_cliente.jpg" class="img-fluid" alt="gestao_de_serviços">
+    <img src="img/img_cliente.jpg" class="img-fluid img" alt="gestao_de_serviços">
 </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

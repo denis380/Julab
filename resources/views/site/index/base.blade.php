@@ -23,6 +23,11 @@
     .py-4{
       font-size: 1.5rem !important;
     }
+    @media only screen and ( max-width: 800px ){
+      .rodape{
+        display: none;
+      }
+    }
   </style>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
