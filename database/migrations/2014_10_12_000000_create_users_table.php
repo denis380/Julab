@@ -26,6 +26,7 @@ class CreateUsersTable extends Migration
             $table->string('logradouro')->nullable();
             $table->string('numero')->nullable();
             $table->rememberToken();
+            $table->enum('tipo', ['A', 'C', 'P'])->nullable()->default(['P', 'C']);
             $table->timestamps();
 
         });

@@ -9,6 +9,7 @@ use App\Models\Clientes;
 use App\Models\Nota;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
+use App\User;
 
 class SiteController extends Controller
 {
@@ -88,5 +89,10 @@ class SiteController extends Controller
     public function exibeCliente()
     {
         return view('site.index.cliente');
+    }
+
+    public function verificaUsuarios(){
+        $usuarios = User::all();
+        return view ('auth/tabelaUsuarios', compact('usuarios'));
     }
 }

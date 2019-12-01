@@ -21,7 +21,8 @@ class UserTableSeeder extends Seeder
             'cidade'     => 'Contagem',
             'bairro'     => 'Vila Renascer',
             'logradouro' => 'Adélia Batista',
-            'numero'     => '53'
+            'numero'     => '53',
+            'tipo'       => 'A'
         ]);
     }
 }

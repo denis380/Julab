@@ -102,7 +102,7 @@ return [
         
         [
             'text'        => 'HOME',
-            'url'         => '/admin',
+            'url'         => '/home',
             'icon'        => 'home',
             'label_color' => 'success',
         ],

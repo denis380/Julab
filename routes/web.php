@@ -5,6 +5,8 @@ Auth::routes(['verify' => true]);
 Route::group(['middleware' => 'auth'], function(){
     Route::get('/admin', 'Site\SiteController@admin')->name('admin');
 
+    Route::get('/verificaUsuarios', 'Site\SiteController@verificaUsuarios')->name('verificaUsuarios');
+
     // =-=-=-=-=-=-=-=-=-=-=-=-= Rotas de Equipamentos =-=-=-=-=-=-=-=-=-=-=-=-=-//
     Route::get('/equipamentos', 'Site\EquipamentosController@exibeEquipamentos');
     Route::get('/novoequip', 'Site\EquipamentosController@novoEquipamento');

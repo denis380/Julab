@@ -28,7 +28,6 @@ class PrestadorController extends Controller
         
         if($request->password != $request->password_confirmation)
         {
-            
             echo '<script language="javascript">';
             echo 'alert("[ERRO] As senhas não são iguais!");';
             echo 'window.location.href = "mudasenha";';
