@@ -1,11 +1,13 @@
 <?php
 Use App\Models\Servico;
 Auth::routes(['verify' => true]);
+Route::group(['middleware' => 'ClasseA'], function () {
+    Route::get('/admin_page', 'Auth\AdminController@admin_page')->name('admin_page');
+    Route::get('/verifica_usuarios', 'Auth\AdminController@verificaUsuarios')->name('verificaUsuarios');
+});
 
 Route::group(['middleware' => 'auth'], function(){
     Route::get('/admin', 'Site\SiteController@admin')->name('admin');
-
-    Route::get('/verificaUsuarios', 'Site\SiteController@verificaUsuarios')->name('verificaUsuarios');
 
     // =-=-=-=-=-=-=-=-=-=-=-=-= Rotas de Equipamentos =-=-=-=-=-=-=-=-=-=-=-=-=-//
     Route::get('/equipamentos', 'Site\EquipamentosController@exibeEquipamentos');

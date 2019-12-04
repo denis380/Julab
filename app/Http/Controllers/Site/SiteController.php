@@ -91,8 +91,4 @@ class SiteController extends Controller
         return view('site.index.cliente');
     }
 
-    public function verificaUsuarios(){
-        $usuarios = User::all();
-        return view ('auth/tabelaUsuarios', compact('usuarios'));
-    }
 }
